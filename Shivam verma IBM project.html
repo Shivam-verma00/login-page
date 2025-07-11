@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My E-Commerce Store</title>
+  <style>
+    * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+}
+
+header {
+  background-color: #222;
+  color: #fff;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+main {
+  padding: 2rem;
+}
+
+.products {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.product-card {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: 220px;
+  text-align: center;
+  padding: 1rem;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+.product-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+button {
+  margin-top: 10px;
+  padding: 0.5rem 1rem;
+  background-color: #28a745;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+button:hover {
+  background-color: #218838;
+}
+
+footer {
+  background-color: #222;
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+  margin-top: 2rem;
+}
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">🛍 Shivam Verma Shop</div>
+    <div class="cart">
+      🛒 Cart: <span id="cart-count">0</span>
+    </div>
+  </header>
+
+  <main>
+    <h2>Products</h2>
+    <div class="products" id="product-list">
+      <!-- Products will be injected by JavaScript -->
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2025 MyShop. All rights reserved.
+  </footer>
+
+  <script>
+    const products = [
+  {
+    name: "Wireless Headphones",
+    price: 59.99,
+    image: "https://via.placeholder.com/200x150?text=Headphones"
+  },
+  {
+    name: "Smart Watch",
+    price: 99.99,
+    image: "https://via.placeholder.com/200x150?text=Watch"
+  },
+  {
+    name: "Sneakers",
+    price: 79.99,
+    image: "https://via.placeholder.com/200x150?text=Sneakers"
+  },
+  {
+    name: "Backpack",
+    price: 39.99,
+    image: "https://via.placeholder.com/200x150?text=Backpack"
+  }
+];
+
+let cartCount = 0;
+
+function renderProducts() {
+  const productList = document.getElementById('product-list');
+  products.forEach(product => {
+    const card = document.createElement('div');
+    card.className = 'product-card';
+    card.innerHTML = `
+      <img src="${product.image}" alt="${product.name}" />
+      <h3>${product.name}</h3>
+      <p>$${product.price.toFixed(2)}</p>
+      <button onclick="addToCart('${product.name}')">Add to Cart</button>
+    `;
+    productList.appendChild(card);
+  });
+}
+
+function addToCart(productName) {
+  cartCount++;
+  document.getElementById('cart-count').innerText = cartCount;
+  alert(`${productName} added to cart!`);
+}
+
+window.onload = renderProducts;
+
+  </script>
+</body>
+</html>
